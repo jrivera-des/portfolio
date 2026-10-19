@@ -477,7 +477,7 @@ P.forEach((p,i)=>{const b=document.createElement('button');b.className='card';b.
  b.addEventListener('focus',()=>{if(mq.matches||!dist)return;stage.scrollLeft=0;const rb=rail.getBoundingClientRect(),cb=b.getBoundingClientRect(),l=cb.left-rb.left,r=l+cb.width,cur=-(new DOMMatrix(getComputedStyle(rail).transform).m41||0);let t=cur;if(r>cur+innerWidth-32)t=r+32-innerWidth;else if(l<cur+32)t=l-32;if(t!==cur)scrollTo({top:track.offsetTop+Math.min(dist,Math.max(0,t)),behavior:'smooth'})});
  b.onpointermove=e=>{const r=b.getBoundingClientRect();b.style.setProperty('--ry',(((e.clientX-r.left)/r.width-.5)*7).toFixed(2)+'deg');b.style.setProperty('--rx',(((e.clientY-r.top)/r.height-.5)*-5).toFixed(2)+'deg');b.style.setProperty('--mx',(e.clientX-r.left)+'px');b.style.setProperty('--my',(e.clientY-r.top)+'px');b.querySelector('.th').style.setProperty('--mx',(e.clientX-r.left)+'px');b.querySelector('.th').style.setProperty('--my',(e.clientY-r.top)+'px')};
  rail.appendChild(b)});
-const JOBS=[['Fanatics','2022–now'],["Lowe's",'2020–22'],['Royal Caribbean','2019–20'],['Genius Plaza','2017–18'],['SATO Global','2017'],['AutoNation','2014–17'],['Hard Rock','2013–14'],['TouchTunes','2011–13']];
+const JOBS=[['Fanatics','2022–now'],['Crexi','2022'],["Lowe's",'2020–22'],['Royal Caribbean','2019–20'],['SwagUp','2018–19'],['Genius Plaza','2017–18'],['SATO Global','2017'],['AutoNation','2014–17'],['Hard Rock','2013–14'],['TouchTunes','2011–13']];
 $('#cos').innerHTML=JOBS.map(([n,y])=>`<span>${n} <em style="font-style:normal;color:var(--ts)">${y}</em></span>`).join('');
 
 // scroll-driven stage
