@@ -458,7 +458,7 @@ const $=s=>document.querySelector(s), rail=$('#rail'), root=document.documentEle
 
 // hero words
 const hero=$('#hero');
-const parts=[['Lead Product Designer and creative technologist with a specialization in brand & product design systems in 0-1 spaces.'],[],['Learn more ',['about me','#/about'],', scroll through my work, or connect with me below.']];
+const parts=[['Hi, I\'m Jesus, a Lead Product Designer and creative technologist with a specialization in brand & product design systems in 0-1 spaces.'],[],['Learn more ',['about me','#/about'],', scroll through my work, or connect with me below.']];
 let wi=0;const words=[];
 const wrap=(t,el)=>t.split(' ').filter(Boolean).forEach(w=>{const s=document.createElement('span');s.className='w';s.textContent=w+'\u00a0';s.style.animationDelay=(.15+wi++*.035)+'s';el.appendChild(s);words.push(s)});
 parts.forEach((row,i)=>{if(!row.length){hero.append(document.createElement('br'),document.createElement('br'));return}
