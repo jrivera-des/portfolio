@@ -249,7 +249,8 @@ body.scrolled header::before{opacity:1}
 .meta{min-height:auto}
 #detail{grid-template-rows:max-content max-content;grid-auto-rows:max-content}
 .meta .reach{display:none}
-.meta .foot{padding-top:0;margin-top:0}
+.meta .foot{position:absolute;padding:0;margin:0}
+#detail .cpy{margin-top:0}
 .meta .nav{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:30;display:flex;gap:8px;width:max-content;max-width:calc(100vw - 32px)}
 #detail{padding-bottom:calc(var(--m) + 88px + env(safe-area-inset-bottom,0px))}
 .meta .nav .btn{background:var(--l0);box-shadow:0 6px 18px -6px rgba(0,0,0,.35)}
