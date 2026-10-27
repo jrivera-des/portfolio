@@ -571,7 +571,7 @@ function route(){const h=location.hash,m=h.match(/^#\/project\/(\d+)/);
  const openEl=m?det:h==='#/about'?about:h==='#/resume'?$('#resumeov'):null;
  if(openEl){if(!openEl.contains(document.activeElement))openEl.focus({preventScroll:true})}
  else if(wasLock&&lastCard){lastCard.focus({preventScroll:true})}
- wasLock=lock;track(h,m)}
+ wasLock=lock;gcView(h,m)}
 let wasLock=false;
 document.querySelectorAll('.ov').forEach(o=>o.tabIndex=-1);
 // Resume: on your own domain the button is a normal link that opens the PDF in a new tab.
@@ -583,7 +583,7 @@ if(window.claude)previewMode();
 // Analytics (GoatCounter): counts each view and the key clicks. Skipped inside the claude.ai preview.
 let lastPath='';
 function gc(o){try{if(window.claude||!window.goatcounter||!window.goatcounter.count)return;window.goatcounter.count(o)}catch(e){}}
-function track(h,m){const slug=m?'/project/'+String(P[+m[1]].co).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''):h==='#/about'?'/about':h==='#/resume'?'/resume':'/';
+function gcView(h,m){const slug=m?'/project/'+String(P[+m[1]].co).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''):h==='#/about'?'/about':h==='#/resume'?'/resume':'/';
  if(slug===lastPath)return;lastPath=slug;gc({path:slug,title:m?P[+m[1]].co:slug==='/'?'Home':slug.slice(1)})}
 document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('a');if(!a)return;const h=a.getAttribute('href')||'';
  if(h.startsWith('mailto:'))gc({path:'click-email',title:'Clicked email',event:true});
