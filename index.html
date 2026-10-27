@@ -253,7 +253,8 @@ body.scrolled header::before{opacity:1}
 #detail .cpy{margin-top:0}
 .meta .nav{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:30;display:flex;gap:8px;width:max-content;max-width:calc(100vw - 32px)}
 #detail{padding-bottom:calc(var(--m) + 88px + env(safe-area-inset-bottom,0px))}
-.meta .nav .btn{background:var(--l0);box-shadow:0 6px 18px -6px rgba(0,0,0,.35)}
+.meta .nav .btn:not(:hover):not(:focus-visible):not(:active){background:var(--l0)}
+.meta .nav .btn:hover,.meta .nav .btn:focus-visible,.meta .nav .btn:active{background:var(--tp);color:var(--l0)}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.hero .w{opacity:1;transform:none}}
 </style>
