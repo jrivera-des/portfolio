@@ -250,6 +250,7 @@ body.scrolled header::before{opacity:1}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.hero .w{opacity:1;transform:none}}
 </style>
+<script data-goatcounter="https://jrivera.goatcounter.com/count" data-goatcounter-settings='{"no_onload":true}' async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 <div id="glow"></div>
@@ -570,7 +571,7 @@ function route(){const h=location.hash,m=h.match(/^#\/project\/(\d+)/);
  const openEl=m?det:h==='#/about'?about:h==='#/resume'?$('#resumeov'):null;
  if(openEl){if(!openEl.contains(document.activeElement))openEl.focus({preventScroll:true})}
  else if(wasLock&&lastCard){lastCard.focus({preventScroll:true})}
- wasLock=lock}
+ wasLock=lock;track(h,m)}
 let wasLock=false;
 document.querySelectorAll('.ov').forEach(o=>o.tabIndex=-1);
 // Resume: on your own domain the button is a normal link that opens the PDF in a new tab.
@@ -579,6 +580,15 @@ const previewMode=()=>{const r=$('#resume');r.href='#/resume';r.removeAttribute(
 if(window.claude)previewMode();
 (async()=>{try{const d=await window.claude?.use('downloads');if(window.claude)previewMode();if(!d)return;const b=$('#dl');b.hidden=false;
  b.onclick=async()=>{try{const blob=await (await fetch('Jesus-Rivera-Resume.pdf')).blob();await d.save({filename:'Jesus-Rivera-Resume.pdf',data:blob})}catch(e){}}}catch(e){}})();
+// Analytics (GoatCounter): counts each view and the key clicks. Skipped inside the claude.ai preview.
+let lastPath='';
+function gc(o){try{if(window.claude||!window.goatcounter||!window.goatcounter.count)return;window.goatcounter.count(o)}catch(e){}}
+function track(h,m){const slug=m?'/project/'+String(P[+m[1]].co).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''):h==='#/about'?'/about':h==='#/resume'?'/resume':'/';
+ if(slug===lastPath)return;lastPath=slug;gc({path:slug,title:m?P[+m[1]].co:slug==='/'?'Home':slug.slice(1)})}
+document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('a');if(!a)return;const h=a.getAttribute('href')||'';
+ if(h.startsWith('mailto:'))gc({path:'click-email',title:'Clicked email',event:true});
+ else if(h.includes('linkedin.com'))gc({path:'click-linkedin',title:'Clicked LinkedIn',event:true});
+ else if(/Jesus-Rivera-Resume\.pdf/.test(h))gc({path:'click-resume-pdf',title:'Opened resume PDF',event:true})});
 addEventListener('hashchange',route);route();
 const endIntro=()=>{if(introDone)return;introDone=true;syncHome()};
 addEventListener('scroll',()=>{if(scrollY>4)endIntro();document.body.classList.toggle('scrolled',scrollY>24)},{passive:true});
